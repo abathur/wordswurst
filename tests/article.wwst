@@ -1,0 +1,12 @@
+#compose content.wwst article.css
+  #article
+    %select.byline{authors > author#dipsum}
+
+    Such article. Much text.
+
+    Very articulate.
+
+    %select.detail{authors > author#dipsum}
+
+  #footer
+    %select.browse{authors}

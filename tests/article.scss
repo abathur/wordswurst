@@ -1,0 +1,30 @@
+email {
+  display: word;
+  &::before, &::after { display: char; }
+  &::before { content: "<"; }
+  &::after { content: ">"; }
+}
+
+.byline {
+  &::before { content: "Written by "; }
+  * { display: none; }
+  name, &::before { display: word; }
+}
+
+.detail {
+  display: block;
+  &::before { content: "About the Author"; }
+  name { display: word; }
+  bio { display: block; }
+}
+
+.browse {
+  &::before { content: "Browse All Authors:"; }
+  author, &::before { display: line; }
+  author {
+    * { display: none; }
+    > name, &::before, &::after { display: word; }
+    &::before { content: "- "; }
+    &::after { content: "(#" attr(id) ")"; }
+  }
+}
