@@ -10,8 +10,8 @@ let
     src = fetchFromGitHub {
       owner = "abathur";
       repo = "d-mark-python";
-      rev = "886d32f8fd1635ceac3e13ff04338a7a1717d6de";
-      hash = "sha256-b9UqOc+SyxO2gCzAC+4602MiuvssTFwdvXXSOtThuT0=";
+      rev = "4c0461046f1b7adf98757d06aa027c04a22e43e9";
+      hash = "sha256-oeyLAcpLaCm46sLymATVdthbXQez5J1W/tGht8Obv90=";
     };
     name = "d-mark-python";
     version = "unstable";
