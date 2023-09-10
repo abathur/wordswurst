@@ -2,21 +2,17 @@
 , runCommand
 , python39
 , fetchFromGitHub
+, version ? "unstable"
+, src ? fetchFromGitHub {
+    owner = "abathur";
+    repo = "wordswurst";
+    rev = "66763c5f46cda53d6244383b1322d2699affe167";
+    hash = "sha256-d3ieqsYPNghCsid8WcW3z4wqQbtEFOu6kb8j8mxPuc4=";
+  }
+, d-mark-python
 }:
 
 let
-  dmark = python39.pkgs.buildPythonPackage {
-    #src = pkgs.lib.cleanSource ../d-mark-python;
-    src = fetchFromGitHub {
-      owner = "abathur";
-      repo = "d-mark-python";
-      rev = "4c0461046f1b7adf98757d06aa027c04a22e43e9";
-      hash = "sha256-oeyLAcpLaCm46sLymATVdthbXQez5J1W/tGht8Obv90=";
-    };
-    name = "d-mark-python";
-    version = "unstable";
-  };
-
   /* TODO: temporarily extracting old version from nixpkgs; ww needs
   to adapt to something about the 5.x or 6.x series but time's short */
   cssselect2 = with python39.pkgs; buildPythonPackage rec {
@@ -42,15 +38,14 @@ let
 
 in
 python39.pkgs.buildPythonPackage {
-  name = "wordswurst-test";
-  version = "unset";
-  src = lib.cleanSource ./.;
-  # dontInstall = true;
+  pname = "wordswurst";
+  inherit src version;
+
   propagatedBuildInputs = [
     python39.pkgs.tinycss2
     cssselect2
     python39.pkgs.inflect
-    dmark
+    d-mark-python
   ];
 
   /*
