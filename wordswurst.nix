@@ -1,7 +1,14 @@
 { lib
-, runCommand
-, python39
 , fetchFromGitHub
+, buildPythonPackage
+, pythonOlder
+, fetchPypi
+, tinycss2
+, pytestCheckHook
+, setuptools
+, wheel
+, inflect
+, d-mark-python
 , version ? "unstable"
 , src ? fetchFromGitHub {
     owner = "abathur";
@@ -9,13 +16,12 @@
     rev = "66763c5f46cda53d6244383b1322d2699affe167";
     hash = "sha256-d3ieqsYPNghCsid8WcW3z4wqQbtEFOu6kb8j8mxPuc4=";
   }
-, d-mark-python
 }:
 
 let
   /* TODO: temporarily extracting old version from nixpkgs; ww needs
   to adapt to something about the 5.x or 6.x series but time's short */
-  cssselect2 = with python39.pkgs; buildPythonPackage rec {
+  cssselect2 = buildPythonPackage rec {
     pname = "cssselect2";
     version = "0.4.1";
     disabled = pythonOlder "3.5";
@@ -37,14 +43,21 @@ let
   };
 
 in
-python39.pkgs.buildPythonPackage {
+buildPythonPackage {
   pname = "wordswurst";
   inherit src version;
 
+  pyproject = true;
+
+  nativeBuildInputs = [
+    setuptools
+    wheel
+  ];
+
   propagatedBuildInputs = [
-    python39.pkgs.tinycss2
+    tinycss2
     cssselect2
-    python39.pkgs.inflect
+    inflect
     d-mark-python
   ];
 

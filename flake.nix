@@ -11,7 +11,7 @@
       flake = false;
     };
     d-mark-python = {
-      url = "github:abathur/d-mark-python/draft";
+      url = "github:abathur/d-mark-python";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
       inputs.flake-compat.follows = "flake-compat";
@@ -23,7 +23,7 @@
   outputs = { self, nixpkgs, flake-utils, flake-compat, d-mark-python }:
     {
       overlays.default = nixpkgs.lib.composeExtensions d-mark-python.overlays.default (final: prev: {
-        wordswurst = final.callPackage ./wordswurst.nix {
+        wordswurst = final.python3Packages.callPackage ./wordswurst.nix {
           # TODO: this won't work since it isn't in nixpkgs atm
           # version = prev.wordswurst.version + "-" + (self.shortRev or "dirty");
           version = "unstable" + "-" + (self.shortRev or "dirty");

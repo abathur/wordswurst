@@ -13,6 +13,8 @@ import tinycss2, cssselect2
 import inflect
 import dmark
 
+__version__ = "0.dev0"
+
 # TODO: handle better than just global state?
 content = matcher = None
 SORT_KEY = operator.itemgetter(0, 1)

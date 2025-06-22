@@ -1,0 +1,25 @@
+[project]
+name = "wordswurst"
+description = "experiment in single-source text re-use, plaintext layout, and templating"
+# keywords = todo
+readme = "README.md"
+license = {file = "LICENSE"}
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3"
+]
+authors =  [
+  {name = "Travis A. Everett", email = "travis.a.everett+wordswurst@gmail.com"},
+]
+dynamic = ["version"]
+
+[tool.setuptools.dynamic]
+version = {attr = "wordswurst.__version__"}
+
+[project.scripts]
+wordswurst = "wordswurst:main"
+
+[project.urls]
+Repository = "https://github.com/abathur/d-mark-python"
+
+
