@@ -24,6 +24,7 @@ let
   cssselect2 = buildPythonPackage rec {
     pname = "cssselect2";
     version = "0.4.1";
+    format = "setuptools";
     disabled = pythonOlder "3.5";
 
     src = fetchPypi {
